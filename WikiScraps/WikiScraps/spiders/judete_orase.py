@@ -10,9 +10,7 @@ class JudeteOraseSpider(scrapy.Spider):
     def parse(self, response):
         urls = response.css('p b a::attr(href)').extract()
         for url in urls:
-            print url
             url = response.urljoin(url)
-            print url
             yield scrapy.Request(url=url, callback=self.parse_details)
 
     
